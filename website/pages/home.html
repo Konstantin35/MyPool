@@ -85,9 +85,11 @@
     }
 
     .header-blue {
-      background: linear-gradient(135deg, #43d091, #00BCD4);
-      background-color: #184e8e;
+      background: linear-gradient(135deg, #214032, #134950);
+      background-color: #293f58;
       padding-bottom: 40px;
+      background-image: url(/static/img/background.jpg);
+      background-size: cover;
     }
 
     .header-blue .action-button, .header-blue .action-button:not(.disabled):active {
@@ -150,7 +152,7 @@
 
     .features-boxed .item .icon {
       font-size: 60px;
-      background: -webkit-linear-gradient(#43d091, #00BCD4);
+      background: -webkit-linear-gradient(#bcc4ce, #6b7772);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       margin-top: 20px;
@@ -186,9 +188,8 @@
           <div class="container hero" style="margin-left: 5px;">
             <div class="row">
               <div class="col-12 col-lg-12 col-xl-7 offset-xl-1">
-                <h1 class="display-4" style="margin:0 15px 5px 0;">Welcome To MyNOMP!</h1>
-                <p>A multi-coin mining personal pool.</p>
-                <p>0% - fee ;-)</p>
+                <h1 class="display-4" style="margin:0 15px 5px 0;">Welcome to MyPool</h1>
+                <p>A multi-coin mining personal pool. With Proxy and Balancing</p>
                 <div class="row">
                   <div class="col-lg-4 col-md-8">
                     <a class="btn btn-light btn-lg action-button header-button" href="/">Get Started Now!</a>
@@ -210,13 +211,13 @@
           </div>
           <div class="row justify-content-center features pb-1">
               <div class="col-sm-6 col-md-6 col-lg-6 col-xl-3 item">
-                  <div class="box"><i class="fa fa-tachometer icon"></i>
+                  <div class="box"><i class="fa fa-fighter-jet icon"></i>
                       <h3 class="name">They&#39;re Fast</h3>
                       <p class="description">Speed is key when it comes to mining. So we chose hardware that can provide just that! Giving our users the best connection possible!</p>
                   </div>
               </div>
               <div class="col-sm-6 col-md-6 col-lg-6 col-xl-3 item">
-                  <div class="box"><i class="fa fa-shield icon"></i>
+                  <div class="box"><i class="fa fa-lock icon"></i>
                       <h3 class="name">They&#39;re Protected</h3>
                       <p class="description">Don&#39;t like downtime? Neither do we! So we take measures to protect our site from any malicious attacks that could disrupt mining!</p>
                   </div>
@@ -255,7 +256,7 @@
                   </div>
               </div>
               <div class="col-sm-6 col-md-6 col-lg-6 col-xl-3 item">
-                  <div class="box"><i class="fa fa-tachometer icon"></i>
+                  <div class="box"><i class="fa fa-hashtag icon"></i>
                       <h3 class="name">Total Hashrate</h3>
                       {{ var hashrate = 0; }}
                       {{ for(var pool in it.stats.pools) { }}

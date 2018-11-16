@@ -14,7 +14,7 @@
         <!-- fonts n styles -->
         <link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css">
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.4.2/pure-min.css">
 
@@ -130,14 +130,10 @@
 
            
             .menu {
-                background: #23538a; /* Old browsers */
-                background: -moz-linear-gradient(top, #23538a 25%, #23538a 28%, #23538a 30%, #a7cfdf 100%); /* FF3.6-15 */
-                background: -webkit-linear-gradient(top, #23538a 25%,#23538a 28%,#23538a 30%,#a7cfdf 100%); /* Chrome10-25,Safari5.1-6 */
-                background: linear-gradient(to bottom, #23538a 25%,#23538a 28%,#23538a 30%,#a7cfdf 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#23538a', endColorstr='#a7cfdf',GradientType=0 ); /* IE6-9 */
+                background: #00001f;
             }
               .mybg-dark {
-                background-color: #12263e;
+                background-color: #00060c;
               }
              }
             .sidebar-nav li a:hover {
@@ -227,20 +223,42 @@
             <div id="sidebar-wrapper" class="menu toggled">
                 <ul class="sidebar-nav" style="margin-top: 40px;">
                     <li>
-                        <a href="#menu-toggle" id="menu-toggle"><i class="fa fa-bars sidebar-icon"></i> Toggle Menu</a>
+                        <a href="#menu-toggle" id="menu-toggle"><i class="fa fa-arrows-alt-h sidebar-icon"></i> MyPool Menu</a>
                     </li>
                     <li>
-                        <a href="/"><i class="fa fa-home sidebar-icon"></i> Dashboard</a>
+                        <a href="/"><i class="fa fa-home sidebar-icon"></i>Dashboard</a>
                     </li>
-                    <li>
-                        <a href="/pools"><i class="fa fa-info-circle sidebar-icon"></i> Pools <span class="sr-only">(current)</span></a>
-                    </li>
-                   <li><!-- Link with dropdown items -->
-                     <a class="sidebar-link" href="#homeSubmenu" data-toggle="collapse" aria-expanded="false"><i class="fa fa-bar-chart sidebar-icon"></i> Statistics</a>
-                     <ul class="collapse list-unstyled" id="homeSubmenu">
+               
+                    <li><!-- Link with dropdown items -->
+                     <a class="sidebar-link" href="#poolsSubmenu" data-toggle="collapse" aria-expanded="false"><i class="fa fa-poo-storm sidebar-icon"></i> Pools</a>
+                     <ul class="collapse list-unstyled" id="poolsSubmenu">
+
+                       <li class="mybg-dark text-light pl-3"><a href="/pool_add"><i class="fa fa-plus-circle"></i>&nbsp;Add</a></li>
+                       <li class="mybg-dark text-light pl-3"><a href="/pools"><i class="fa fa-list-alt"></i>&nbsp;List</a></li>  
                        {{ for(var pool in it.stats.pools) { }}
-                          <li><a class="mybg-dark text-light pl-3" href="/stats/{{=it.stats.pools[pool].name}}"><img src="/static/icons/{{=it.stats.pools[pool].name}}.png" height="16px"/> {{=it.stats.pools[pool].name.charAt(0).toUpperCase() + it.stats.pools[pool].name.slice(1)}}</a></li>
+                          <li><a class="mybg-dark text-light pl-3" href="/pool/{{=it.stats.pools[pool].name}}"><i class="fas fa-coins"></i>&nbsp;{{=it.stats.pools[pool].name.charAt(0).toUpperCase() + it.stats.pools[pool].name.slice(1)}}</a></li>
                        {{ } }}
+                     </ul>
+                   </li>
+                    <li><!-- Link with dropdown items -->
+                     <a class="sidebar-link" href="#proxySubmenu" data-toggle="collapse" aria-expanded="false"><i class="fa fa-random sidebar-icon"></i> Proxies</a>
+                     <ul class="collapse list-unstyled" id="proxySubmenu">
+
+                       <li class="mybg-dark text-light pl-3"><a href="/proxy_add"><i class="fa fa-plus-circle"></i>&nbsp;Add</a></li>
+                       <li class="mybg-dark text-light pl-3"><a href="/proxies"><i class="fa fa-list-alt"></i>&nbsp;List</a></li>  
+                       {{ for(var pool in it.stats.pools) { }}
+                          <li><a class="mybg-dark text-light pl-3" href="/proxy/{{=it.stats.pools[pool].name}}"><i class="fas fa-coins"></i>&nbsp;{{=it.stats.pools[pool].name.charAt(0).toUpperCase() + it.stats.pools[pool].name.slice(1)}}</a></li>
+                       {{ } }}
+                     </ul>
+                   </li>
+                    <li><!-- Link with dropdown items -->
+                     <a class="sidebar-link" href="#supportSubmenu" data-toggle="collapse" aria-expanded="false"><i class="fa fa-life-ring sidebar-icon"></i> Support</a>
+                     <ul class="collapse list-unstyled" id="supportSubmenu">
+                       <li class="mybg-dark text-light pl-3"><a href="/pool_add"><i class="fa fa-plus-circle"></i>&nbsp;Add</a></li>
+                       <li class="mybg-dark text-light pl-3"><a href="/pool_add"><i class="fa fa-dna"></i>&nbsp;Add new algo</a></li>
+                       <li class="mybg-dark text-light pl-3"><a href="/pools"><i class="fa fa-list-alt"></i>&nbsp;Requests</a></li>
+                       <li class="mybg-dark text-light pl-3"><a href="/pool_add"><i class="fa fa-donate"></i>&nbsp;Donation</a></li>
+                       <li class="mybg-dark text-light pl-3"><a href="/pool_add"><i class="fa fa-money-bill-alt"></i>&nbsp;Buy MyProPool</a></li>
                      </ul>
                    </li>
                  </ul>
@@ -262,7 +280,7 @@
         <!-- Don't be a dick... Keep this if you use the project -->
         <footer>
             <div class="footer_container">
-                <span>Powered by <a href="https://github.com/MyNOMP/MyNOMP">MyNOMP</a></span>
+                <span>Powered by <a href="https://github.com/MyCryptoLab">MyCryptoLab</a></span>
             </div>
         </footer>
         <!-- Menu Toggle Script -->

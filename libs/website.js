@@ -36,8 +36,10 @@ module.exports = function () {
         'index.html': 'index',
         'home.html': '',
     	  'pools.html': 'pools',
+    	  'proxies.html': 'proxies',
         'miner_stats.html': 'miner_stats',
-        'pool_stats.html': 'pool_stats'
+        'pool.html': 'pool',
+        'proxy.html': 'proxy'
     };
 
     var pageTemplates = {};
@@ -216,12 +218,25 @@ module.exports = function () {
         }
     };
 
-    var poolStatPage = function(req, res, next) {
+
+    var proxyPage = function(req, res, next) {
+          var id = req.params.id || null;
+          if (id != null) {
+            portalStats.getPoolStats(id, function(){
+                processTemplates();
+                res.end(indexesProcessed['proxy']);
+            });
+          } else {
+              next();
+          }
+      };
+
+    var poolPage = function(req, res, next) {
           var coin = req.params.coin || null;
           if (coin != null) {
             portalStats.getPoolStats(coin, function(){
                 processTemplates();
-                res.end(indexesProcessed['pool_stats']);
+                res.end(indexesProcessed['pool']);
             });
           } else {
               next();
@@ -276,7 +291,8 @@ module.exports = function () {
         res.end(keyScriptProcessed);
     });
     app.get('/workers/:address', minerpage);
-    app.get('/stats/:coin', poolStatPage);
+    app.get('/pool/:coin', poolPage);
+    app.get('/proxy/:id', proxyPage);
     app.get('/:page', route);
     app.get('/', route);
 

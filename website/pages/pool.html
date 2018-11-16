@@ -54,13 +54,28 @@
                 <td class="td_title">Height:</td>
                 <td id="networkBlocks">{{=it.stats.pools[pool].poolStats.networkBlocks || "&#128257;"}}</td>
               </tr>
-              <tr>
-                <td colspan="1" class="td_title">Errors: </td>
-                <td colspan="7" id="errors">{{=it.stats.pools[pool].poolStats.errors || "&#128257;" }}</td>
-                <td class="td_title">Balance:</td>
+
+              <tr>                
+                <td class="td_title">Status: </td>
+                <td>runned <a href="/">(stop)</a></td>
+                <td class="td_title">Config:</td>
+                <td><a href="/">(edit)</a></td>
+                <td class="td_title">Uptime:</td>
+                <td >1 22:10</td>
+                <td class="td_title">Type:</td>
+                <td >Pool</td>                <td class="td_title">Balance:</td>
                 <td id="mybalance">{{=it.stats.pools[pool].poolStats.myBalance || "&#128257;"}} {{=it.stats.pools[pool].symbol}}</td>
                 <td class="td_title">Money supply:</td>
                 <td id="moneysupply">{{=it.stats.pools[pool].poolStats.networkMoneysupply || "&#128257;"}} {{=it.stats.pools[pool].symbol}}</td>
+
+
+              <tr>              
+              <tr>
+                <td colspan="1" class="td_title">Errors: </td>
+                <td colspan="7" id="errors">{{=it.stats.pools[pool].poolStats.errors || "&#128257;" }}</td>                <td class="td_title">Tasks:</td>
+                <td >2 <a href="/">(edit) </a></td>
+                <td class="td_title">Log:</td>
+                <td ><a href="/">(view)</a></td>
               </tr>
               {{ break; }}
             {{ } }}
