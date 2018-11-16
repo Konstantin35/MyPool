@@ -1,0 +1,41 @@
+{
+    "enabled": false,
+    "coin": {
+      "name": "Litecoin",
+      "symbol": "LTC",
+      "algorithm": "scrypt",
+      "blockTime": 60
+    },
+    "address": "LkRmAmDWV8JoQiY2xPSeEok1M6G52YfQNF",
+    "ports": {
+        "1501": {
+            "diff":  100
+        },
+        "1502": {
+            "diff":  200,
+            "varDiff": {
+                "minDiff": 8,
+                "maxDiff": 512,
+                "targetTime": 15,
+                "retargetTime": 90,
+                "variancePercent": 30
+            }
+        }
+     },
+    "daemons": [
+        {
+            "host": "10.0.0.2",
+            "port": 12345,
+            "user": "CoinUser",
+            "password": "CoinPassword"
+        }
+    ],
+    "p2p": {
+        "enabled": false,
+        "host": "127.0.0.1",
+        "port": 19333,
+        "disableTransactions": false
+    }
+
+}
+

@@ -1,0 +1,38 @@
+<div class="alert alert-success mb-0">
+		<p class="mt-2">Quick Start Commands</p>
+		<div class="alert alert-light">
+       -a &lt;ALGORITHM&gt; -o stratum+tcp://{{=it.portalConfig.website.stratumHost}}:&lt;PORT&gt; -u &lt;ANY_WORD&gt; -p &lt;x&gt;
+		</div>
+</div>
+
+<div id="container-fluid">
+	<table class="table table-bordered table-striped">
+	
+	  <thead>
+	    <tr>
+					<th>Port</port>
+	      	<th>Symbol</th>
+	      	<th>Coin</th>
+	     		<th>Algorithm</th>
+	      	<th>Workers</th>
+		  		<th>Hash Rate</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+			{{ for(var pool in it.stats.pools) { }}
+		   		<th scope="row">{{=Object.keys(it.poolsConfigs[pool].ports)[0]}}</th>
+		      <th><a href="/stats/{{=it.stats.pools[pool].name}}">{{=it.stats.pools[pool].symbol}}</a></th>
+		 			<td>{{=it.stats.pools[pool].name.charAt(0).toUpperCase() + it.stats.pools[pool].name.slice(1)}}</td>
+					<td>{{=it.stats.pools[pool].algorithm}}</td>
+					<td>{{=it.stats.pools[pool].workerCount}}</td>
+					<td>{{=it.stats.pools[pool].hashrateString}}</td>
+            		{{ var total = 0.0; }}
+            		{{ var rewardRecipients = it.stats.pools[pool].rewardRecipients || {}; }}
+            		{{ for (var r in rewardRecipients) { }}
+            			{{ total += rewardRecipients[r]; }}
+            		{{ } }}
+		    </tr>
+			{{ } }}
+	  </tbody>
+	</table>
+</div>

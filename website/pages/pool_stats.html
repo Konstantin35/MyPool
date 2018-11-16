@@ -1,0 +1,102 @@
+<style>
+
+  .chartLabel {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 300;
+  }
+  .chartHolder {
+    min-height: 300px;
+  }
+  .td_title {
+    font-weight:  700;
+  }
+</style>
+
+<div class="container-fluid p-4">
+	<div class="row">
+  	<div class="col-md-12 pl-0 pr-0">
+  	<div class="chartLabel">Pool Information</div>
+      <table class="table table-bordered table-responsive-lg">
+        <tbody>
+            {{ for(var pool in it.stats.pools) { }}
+              {{ if(pool !== it.stats.coin) continue; }}
+              <tr>                
+                <script> console.log({{=JSON.stringify("it")}}); </script>
+                <td class="td_title">Name: </td>
+                <td>{{=(String(it.stats.coin).charAt(0).toUpperCase() + String(it.stats.coin).slice(1))}}</td>
+                <td class="td_title">Port:</td>
+                {{ for(var pool in it.poolsConfigs) { }}
+                  {{ if(pool !== it.stats.coin) continue; }}
+                  <td>{{=Object.keys(it.poolsConfigs[pool].ports)}}</td>
+                  {{ break; }}
+                {{ } }}
+                <td class="td_title">Hashrate:</td>
+                <td id="poolHashRate">{{=it.stats.pools[pool].hashrateString}}</td>
+                <td class="td_title">Blocks found:</td>
+                <td id="pendingBlocks">{{=it.stats.pools[pool].blocks.pending}}</td>
+                <td class="td_title">Connections:</td>
+                <td id="networkConnections">{{=it.stats.pools[pool].poolStats.networkConnections || "&#128257;"}}</td>
+                <td class="td_title">Difficulty:</td>
+                <td id="networkDiff">{{=Number(Math.round(it.stats.pools[pool].poolStats.networkDiff + 'e' + 4) + 'e-' + 4) || "&#128257;" }}</td>
+              <tr>
+              <tr>
+                <td class="td_title">Algo: </td>
+                <td>{{=it.poolsConfigs[it.stats.coin].coin.algorithm}}</td>
+                <td class="td_title">Workers:</td>
+                <td id="poolWorkers">{{=it.stats.pools[pool].workerCount}}</td>
+                <td class="td_title">Valid Shares:</td>
+                <td id="validShares">{{=it.stats.pools[pool].poolStats.validShares }}</td>
+                <td class="td_title">Invalid Shares:</td>
+                <td id="invalidShares">{{=it.stats.pools[pool].poolStats.invalidShares || "&#128257;"}}</td>
+                <td class="td_title">Network hashrate:</td>
+                <td id="networkSolsString">{{=it.stats.pools[pool].poolStats.networkSolsString}}</td>
+                <td class="td_title">Height:</td>
+                <td id="networkBlocks">{{=it.stats.pools[pool].poolStats.networkBlocks || "&#128257;"}}</td>
+              </tr>
+              <tr>
+                <td colspan="1" class="td_title">Errors: </td>
+                <td colspan="7" id="errors">{{=it.stats.pools[pool].poolStats.errors || "&#128257;" }}</td>
+                <td class="td_title">Balance:</td>
+                <td id="mybalance">{{=it.stats.pools[pool].poolStats.myBalance || "&#128257;"}} {{=it.stats.pools[pool].symbol}}</td>
+                <td class="td_title">Money supply:</td>
+                <td id="moneysupply">{{=it.stats.pools[pool].poolStats.networkMoneysupply || "&#128257;"}} {{=it.stats.pools[pool].symbol}}</td>
+              </tr>
+              {{ break; }}
+            {{ } }}
+        </tbody>
+      </table>
+  	</div>
+  </div>
+  <div class="row justify-content-center">
+  	<div class="col-md-12 chartWrapper">
+      <div class="chartLabel">Hashrate History</div>
+      <div class="chartHolder"><canvas id="poolHashChart" height="50"></canvas></div>
+  	</div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-md-12 chartWrapper">
+      <div class="chartLabel">Worker History</div>
+      <div class="chartHolder"><canvas id="poolWorkerChart" height="50"></canvas></div>
+    </div>
+  </div>
+	<div class="row justify-content-center">
+    	<div class="col-md-12 chartWrapper">
+        	<div class="chartLabel">Pending Block History</div>
+        	<div class="chartHolder"><canvas id="blockChart" height="50"></div>
+    	</div>
+	</div>
+</div>
+
+
+
+<script>
+  //use doT to get the name of the pool (a.k.a. name of coin)
+  var poolName = "{{=it.stats.coin}}";
+  //Used for tracking stats used in graphs and tables
+  document.querySelector('main').appendChild(document.createElement('script')).src = '/static/stat_tracker.js';
+  //Used for EMA calculations and other misc. fucntions
+  document.querySelector('main').appendChild(document.createElement('script')).src = '/static/methods.js';
+  //Then connect the graph handler
+  document.querySelector('main').appendChild(document.createElement('script')).src = '/static/pool_stats.js';
+</script>

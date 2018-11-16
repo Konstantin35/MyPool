@@ -1,0 +1,11 @@
+node_modules/
+node_modules*
+.idea/
+config.json
+pool_configs/*.json
+!pool_configs/example.json
+logs/
+!.gitkeep
+build/
+build*
+package-lock.json
